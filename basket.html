@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basket — Noir & Co.</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Noir &amp; Co.</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Collection</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="basket-btn" onclick="window.location.href='basket.html'">
+      Basket <span id="basket-count">0</span>
+    </div>
+  </nav>
+
+  <!-- Basket Hero -->
+  <section class="about-hero" style="padding: 64px 48px;">
+    <div class="about-hero-text">
+      <p class="hero-eyebrow">Your Selection</p>
+      <h1>Your Basket</h1>
+    </div>
+  </section>
+
+  <!-- Basket Body -->
+  <section class="basket-page-body">
+
+    <!-- Items -->
+    <div class="basket-page-items">
+      <div id="basket-page-list">
+        <p style="color:#888;">Loading basket...</p>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="basket-page-summary">
+      <h3>Order Summary</h3>
+
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="summary-subtotal">£0.00</span>
+      </div>
+      <div class="summary-row">
+        <span>Delivery</span>
+        <span id="summary-delivery">Free</span>
+      </div>
+      <div class="summary-row summary-total">
+        <span>Total</span>
+        <span id="summary-total">£0.00</span>
+      </div>
+
+      <button class="btn-primary" style="width:100%; margin-top:24px;" onclick="openCheckoutPage()">
+        Proceed to Checkout
+      </button>
+      <a href="index.html" class="basket-continue-link">← Continue Shopping</a>
+
+      <!-- Reassurance -->
+      <div class="basket-reassurance">
+        <div class="reassurance-item">
+          <span>✓</span> Free UK delivery on all orders
+        </div>
+        <div class="reassurance-item">
+          <span>✓</span> Free returns within 30 days
+        </div>
+        <div class="reassurance-item">
+          <span>✓</span> Secure checkout
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Checkout Section (hidden until proceed clicked) -->
+  <section id="checkout-section" style="display:none;">
+    <div class="checkout-page-wrap">
+      <h2 style="font-family:'Playfair Display',serif; margin-bottom:24px;">Payment Details</h2>
+
+      <label class="checkout-label">Name on Card</label>
+      <input type="text" id="card-name" placeholder="Jane Smith">
+
+      <label class="checkout-label">Card Number</label>
+      <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="16">
+
+      <div class="input-row">
+        <div style="flex:1">
+          <label class="checkout-label">Expiry</label>
+          <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5">
+        </div>
+        <div style="flex:1">
+          <label class="checkout-label">CVV</label>
+          <input type="text" id="card-cvv" placeholder="123" maxlength="3">
+        </div>
+      </div>
+
+      <div id="checkout-errors" style="margin-top:8px;"></div>
+
+      <button class="btn-primary" style="width:100%; margin-top:20px;" onclick="placeOrder()">
+        Place Order
+      </button>
+      <button onclick="closeCheckoutPage()"
+        style="width:100%; margin-top:10px; background:none; border:1px solid #ddd;
+               color:#888; padding:12px; font-size:0.78rem; letter-spacing:0.1em;
+               text-transform:uppercase; cursor:pointer;">
+        Back to Basket
+      </button>
+    </div>
+  </section>
+
+  <!-- Success Section (hidden) -->
+  <section id="success-section" style="display:none; text-align:center; padding:100px 48px; background:#000; color:#fff;">
+    <div style="font-size:3rem; margin-bottom:16px;">✓</div>
+    <h2 style="font-family:'Playfair Display',serif; font-size:2.5rem; margin-bottom:12px;">Order Confirmed</h2>
+    <p style="color:#888; margin-bottom:32px;">Thank you for your purchase. Your order is on its way.</p>
+    <a href="index.html" class="cta-btn">Continue Shopping</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Noir &amp; Co. — All rights reserved.</p>
+  </footer>
+
+  <script src="basket.js"></script>
+
+  <script>
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    if (link.getAttribute('href') === page) {
+      link.classList.add('active-link');
+    }
+  });
+  </script>
+
+</body>
+</html>

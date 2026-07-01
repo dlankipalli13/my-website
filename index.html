@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Clothing Store</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-logo">Noir &amp; Co.</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Collection</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="basket-btn" onclick="window.location.href='basket.html'">
+      Basket <span id="basket-count">0</span>
+    </div>
+  </nav>
+
+  <!-- Basket Button -->
+  <div class="basket-btn" onclick="window.location.href='basket.html'">
+    Basket <span id="basket-count">0</span>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <p class="hero-eyebrow">New Collection — 2026</p>
+    <h1>Dressed in<br>Black &amp; White</h1>
+    <div class="hero-rule"></div>
+    <p>Timeless pieces, minimal noise. Clothing designed to last beyond the season.</p>
+  </section>
+
+  <!-- Filter Bar -->
+  <div class="section-label">
+    <span>The Collection</span>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-bar">
+   <input type="text" id="search-input" placeholder="Search products..." oninput="handleSearch()">
+   <span class="search-icon">🔍</span>
+  </div>
+  
+  <div id="filter-bar" class="filter-bar"></div>
+
+  <!-- Product Grid -->
+  <div id="product-grid" class="product-grid"></div>
+
+  <!-- Modals injected here by JS -->
+  <div id="modal-container"></div>
+
+  <!-- Basket Modal -->
+  <div class="modal" id="basket-modal">
+    <div class="modal-content">
+      <button class="close" onclick="closeBasket()">&times;</button>
+      <h2>Your Basket</h2>
+      <div id="basket-items">
+        <p style="color:#888; font-size:0.9rem; padding:20px 0;">Your basket is empty.</p>
+      </div>
+      <div class="basket-total-row">
+        <span>Total</span>
+        <span id="basket-total">£0.00</span>
+      </div>
+      <button class="btn-primary" onclick="openCheckout()">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="modal" id="checkout-modal">
+    <div class="modal-content">
+      <button class="close" onclick="closeCheckout()">&times;</button>
+      <h2>Checkout</h2>
+      <label class="checkout-label">Name on Card</label>
+      <input type="text" id="card-name" placeholder="John Smith">
+      <label class="checkout-label">Card Number</label>
+      <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="16">
+      <div class="input-row">
+        <div style="flex:1">
+          <label class="checkout-label">Expiry</label>
+          <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5">
+        </div>
+        <div style="flex:1">
+          <label class="checkout-label">CVV</label>
+          <input type="text" id="card-cvv" placeholder="123" maxlength="3">
+        </div>
+      </div>
+      <br>
+      <button class="btn-primary" onclick="placeOrder()">Place Order</button>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal" id="success-modal">
+    <div class="modal-content" style="text-align:center;">
+      <button class="close" onclick="closeSuccess()">&times;</button>
+      <div class="success-icon">✓</div>
+      <h2>Order Confirmed</h2>
+      <p style="color:#888; font-size:0.9rem; margin-top:10px;">Thank you for your purchase. Your order is on its way.</p>
+      <br>
+      <button class="btn-primary" onclick="closeSuccess()">Continue Shopping</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Noir &amp; Co. — All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <script>
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    if (link.getAttribute('href') === page) {
+      link.classList.add('active-link');
+    }
+  });
+  </script>
+
+</body>
+</html>

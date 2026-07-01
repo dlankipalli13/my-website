@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product — Noir & Co.</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Noir &amp; Co.</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Collection</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="basket-btn" onclick="window.location.href='basket.html'">
+      Basket <span id="basket-count">0</span>
+    </div>
+  </nav>
+
+  <div id="product-page" class="product-page-wrap">
+    <p style="padding:48px; color:#888;">Loading product...</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Noir &amp; Co. — All rights reserved.</p>
+  </footer>
+
+  <script src="product.js"></script>
+
+  <script>
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    if (link.getAttribute('href') === page) {
+      link.classList.add('active-link');
+    }
+  });
+  </script>
+
+</body>
+</html>

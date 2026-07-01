@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Noir & Co.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Noir &amp; Co.</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Collection</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="basket-btn" onclick="window.location.href='basket.html'">
+      Basket <span id="basket-count">0</span>
+    </div>
+  </nav>
+
+  <!-- Contact Hero -->
+  <section class="about-hero">
+    <div class="about-hero-text">
+      <p class="hero-eyebrow">Get in touch</p>
+      <h1>We are here<br>to help</h1>
+      <div class="hero-rule"></div>
+      <p>Whether it is a question about an order, sizing advice, or just a general enquiry — we aim to respond within one working day.</p>
+    </div>
+  </section>
+
+  <!-- Contact Body -->
+  <section class="contact-body">
+
+    <!-- Left: Form -->
+    <div class="contact-form-wrap">
+      <p class="section-eyebrow">Send us a message</p>
+      <h2 class="contact-form-title">What can we help with?</h2>
+
+      <div class="contact-field">
+        <label class="checkout-label">Full Name</label>
+        <input type="text" id="contact-name" placeholder="Jane Smith">
+      </div>
+
+      <div class="contact-field">
+        <label class="checkout-label">Email Address</label>
+        <input type="email" id="contact-email" placeholder="jane@example.com">
+      </div>
+
+      <div class="contact-field">
+        <label class="checkout-label">Subject</label>
+        <select id="contact-subject" class="contact-select">
+          <option value="">Select a topic...</option>
+          <option>Order enquiry</option>
+          <option>Returns & exchanges</option>
+          <option>Sizing advice</option>
+          <option>Product question</option>
+          <option>Something else</option>
+        </select>
+      </div>
+
+      <div class="contact-field">
+        <label class="checkout-label">Message</label>
+        <textarea id="contact-message" placeholder="Tell us what's on your mind..." rows="6"></textarea>
+      </div>
+
+      <div id="contact-errors"></div>
+
+      <button class="btn-primary contact-submit" onclick="submitContact()">Send Message</button>
+
+      <!-- Success message (hidden by default) -->
+      <div id="contact-success" class="contact-success-msg" style="display:none;">
+        <span>✓</span>
+        <div>
+          <strong>Message sent</strong>
+          <p>Thanks for reaching out. We will get back to you within one working day.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Info -->
+    <div class="contact-info">
+
+      <div class="contact-info-block">
+        <p class="section-eyebrow">Customer support</p>
+        <p class="contact-info-detail">hello@noirandco.co.uk</p>
+        <p class="contact-info-sub">Mon – Fri, 9am – 5pm GMT</p>
+      </div>
+
+      <div class="contact-info-block">
+        <p class="section-eyebrow">Returns & exchanges</p>
+        <p class="contact-info-detail">Free returns within 30 days</p>
+        <p class="contact-info-sub">Items must be unworn with original tags attached. Start a return by emailing us with your order number.</p>
+      </div>
+
+      <div class="contact-info-block">
+        <p class="section-eyebrow">Delivery</p>
+        <p class="contact-info-detail">2–4 working days (UK)</p>
+        <p class="contact-info-sub">Orders placed before 1pm are dispatched the same day. International shipping available at checkout.</p>
+      </div>
+
+      <div class="contact-info-block">
+        <p class="section-eyebrow">Our address</p>
+        <p class="contact-info-detail">Noir & Co.</p>
+        <p class="contact-info-sub">14 Whitfield Street<br>London, W1T 2RF<br>United Kingdom</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="section-label">
+      <span>Frequently asked questions</span>
+    </div>
+    <div class="faq-grid">
+
+      <div class="faq-item">
+        <h4>How do I track my order?</h4>
+        <p>Once your order has been dispatched you will receive a confirmation email with a tracking link. Orders are typically delivered within 2–4 working days.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>What is your returns policy?</h4>
+        <p>We accept returns within 30 days of delivery. Items must be unworn, unwashed, and returned with the original tags attached. Email us to start a return.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Do you ship internationally?</h4>
+        <p>Yes — we ship to most countries worldwide. International delivery takes 5–10 working days and costs are calculated at checkout based on your location.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>How do I know what size to order?</h4>
+        <p>Each product page includes a size guide. If you are between sizes we generally recommend sizing up for a more relaxed fit, or down for something more tailored.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Can I change or cancel my order?</h4>
+        <p>Orders can be amended or cancelled within one hour of being placed. After that they enter our dispatch process. Contact us as quickly as possible and we will do our best.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Are your garments ethically made?</h4>
+        <p>Yes. We work with a small number of carefully selected manufacturers. All of our production partners are audited annually for fair wages and safe working conditions.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Noir &amp; Co. — All rights reserved.</p>
+  </footer>
+
+  <script>
+    function submitContact() {
+      const name    = document.getElementById('contact-name').value.trim();
+      const email   = document.getElementById('contact-email').value.trim();
+      const subject = document.getElementById('contact-subject').value;
+      const message = document.getElementById('contact-message').value.trim();
+      const errors  = document.getElementById('contact-errors');
+
+      errors.innerHTML = '';
+      let hasErrors = false;
+
+      if (!name || name.split(' ').length < 2) {
+        errors.innerHTML += '<p class="error-msg">Please enter your full name.</p>';
+        document.getElementById('contact-name').classList.add('input-error');
+        hasErrors = true;
+      } else {
+        document.getElementById('contact-name').classList.remove('input-error');
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errors.innerHTML += '<p class="error-msg">Please enter a valid email address.</p>';
+        document.getElementById('contact-email').classList.add('input-error');
+        hasErrors = true;
+      } else {
+        document.getElementById('contact-email').classList.remove('input-error');
+      }
+
+      if (!subject) {
+        errors.innerHTML += '<p class="error-msg">Please select a subject.</p>';
+        document.getElementById('contact-subject').classList.add('input-error');
+        hasErrors = true;
+      } else {
+        document.getElementById('contact-subject').classList.remove('input-error');
+      }
+
+      if (message.length < 10) {
+        errors.innerHTML += '<p class="error-msg">Please enter a message of at least 10 characters.</p>';
+        document.getElementById('contact-message').classList.add('input-error');
+        hasErrors = true;
+      } else {
+        document.getElementById('contact-message').classList.remove('input-error');
+      }
+
+      if (hasErrors) return;
+
+      // Hide form, show success
+      document.querySelector('.contact-form-wrap').querySelectorAll('.contact-field, .contact-submit, #contact-errors').forEach(el => el.style.display = 'none');
+      document.getElementById('contact-success').style.display = 'flex';
+    }
+  </script>
+
+  <script>
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    if (link.getAttribute('href') === page) {
+      link.classList.add('active-link');
+    }
+  });
+  </script>
+
+</body>
+</html>
