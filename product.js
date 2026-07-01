@@ -39,8 +39,9 @@ function updateNavCount() {
 }
 
 function renderProduct() {
+  const SIZE_ORDER = ["XS", "S", "M", "L", "XL"];
   const stockBySize = product.stock_by_size || {};
-  const sizes = Object.keys(stockBySize);
+  const sizes = SIZE_ORDER.filter(size => stockBySize[size] !== undefined);
   const isOneSize = sizes.length === 1 && sizes[0] === 'One Size';
   const totalStock = Object.values(stockBySize).reduce((a, b) => a + b, 0);
 
@@ -152,6 +153,7 @@ function selectSize(size, btn) {
 }
 
 function addToBasket() {
+  
   const stockBySize = product.stock_by_size || {};
   const sizes = Object.keys(stockBySize);
   const isOneSize = sizes.length === 1 && sizes[0] === 'One Size';
